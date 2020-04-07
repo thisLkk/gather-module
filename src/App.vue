@@ -36,6 +36,10 @@ export default {
                     {
                         path: '/pageLi',
                         name: '李金婷'
+                    },
+                    {
+                        path: '/jiuGePrize',
+                        name: '九宫格抽奖'
                     }
                 ]
             }

@@ -16,6 +16,11 @@ const routes = [
     path: "/pageLi",
     name: "她的主页",
     component: loadView('PageLi')
+  },
+  {
+    path: "/jiuGePrize",
+    name: "九宫格抽奖",
+    component: loadView('JiuGePrize')
   }
 ];
 
