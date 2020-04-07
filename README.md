@@ -1,10 +1,36 @@
 # 通用模块集合
 ***
-## 项目包含
-1.抽奖组件 访问路径：/luck
+## 执行流程
+```
+npm install 
+npm run serve 本地开发
+npm run build 构建（把产出发布到服务器）
+```
+### 规范描述
+```
+   1. 组件首字符需要`大写`；
+   2. 组件内的属性与方法需要备注；
+   3. 路由的命名首字母小写
+   4. vuex的属性命名：${module}${state} demoInfo：demo模块的info属性
+```
+
 ***
-### 三级标题
-三个 ###
+### 属性描述
+vue的属性使用时的介绍<br>
+<br>
+
+`computed`：简写为c；<br>
+`例子`：<br>
+```
+    dom元素使用：:title="cTitle"
+    computed: {
+        // 头部的标题
+        computedTitle() {
+            return 'title';
+        },
+    }
+```
+<br>
 ***
 #### 四级标题
 四个 ####

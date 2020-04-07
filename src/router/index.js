@@ -1,29 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
+// 一级目录
+const loadView = (view) => () => import(`@/views/${view}/index.vue`);
+// 二级目录 包含要进入的页面路径
+const levelView = (view, level, name) => () => import(`@/views/${view}/${level}/${name}/index.vue`);
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "我的主页",
+    component: loadView('PageLu')
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/pageLi",
+    name: "她的主页",
+    component: loadView('PageLi')
   }
 ];
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
+  mode: "hash",
   routes
 });
 
