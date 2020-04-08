@@ -43,7 +43,7 @@ export default {
         },
         toPathHdl(path) {
             this.closeMenu();
-            this.$router.push(path)
+            this.$router.push(path);
         },
         animationHdl(value) {
             var self = this;

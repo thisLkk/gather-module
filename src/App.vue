@@ -65,12 +65,18 @@ export default {
             return isTrue;
         }
     },
+    created() {
+    },
     methods: {
         /**
          * 回退
          */
         goBackHdl() {
-            window.history.go(-1);
+            if (window.history && window.history.length === 1) {
+                this.$router.push('/')
+            } else {
+                window.history.go(-1);
+            }
         },
         /**
          * 打开菜单
