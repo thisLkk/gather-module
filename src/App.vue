@@ -92,7 +92,10 @@ export default {
     .mint-header {
         font-size: $fontSize22;
         .mintui {
-            font-size: $fontSize30;
+            font-size: $fontSize40;
+            &.mintui-back {
+                font-size: $fontSize30;
+            }
         }
     }
     // 配置每个页面的背景色，类名依赖于router.js

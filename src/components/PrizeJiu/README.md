@@ -1,37 +1,63 @@
 #### 组件-九宫格抽奖
 ***
 ```
-1. 状态由此组件内控制，比如接口动画时长等；
-2. 父组件可以提供一些活动状态
-3. 组件会通过执行$emit把中奖的信息回传给调用方
+1. 组件内不请求接口；
+2. 只把成功状态与错误状态回传给父组件，父组件内需要保留接口数据以作使用
+3. 可以自己在父组件内扩展抽奖按钮的动画与元素视觉；
+4. 抽奖按钮的文案暂时不可改变
 ```
 ***
-### props属性：activityState
-`activityState`：\[String|Number\] 活动状态<br>
+### props属性： isClick
+`isClick`：\[Boolean\] 是否可点击<br>
 `说明`：<br>
 ```
-   用于控制抽奖按钮的点击与文案
-   可以是String或者Number。
-   在此组件内部会强制转换为Number;
+   用于控制抽奖按钮是否可点击；
+   不管是首页的活动状态还是用户状态等都在调用处（父组件）整体判断
+   可点击：首页接口返回正常值；
+   不可点击：活动已结束或者网络异常
 ```
 ***
-### props属性：userState
-`activityState`：\[String|Number\] 用户状态<br>
+### props属性： contentList
+`contentList`：\[Array\] 九宫格格子内容<br>
 `说明`：<br>
 ```
-   用于控制抽奖按钮的点击与文案
-   可以是String或者Number。
-   在此组件内部会强制转换为Number;
+   必须是8个，没有做容错处理
+   name：展示文案
+   url：可访问的图片地址
+```
+***
+### props属性： luckState
+`luckState`：\[String\] 重要|控制转动的时机与命中哪一个奖品<br>
+`说明`：<br>
+```
+   luckState：ABCDEFGH 对应顺时针格子的12345678
+   前提：首页接口返回0正常的情况下，才可以点击抽奖
+   抽奖时会通过getDataEmit的通知父组件调取抽奖接口；
+   成功时赋值为中奖编号；不成功时赋值为error；必须有值；
 ```
 
 ***
 ### $emit回传方法
-`luckInfoEmit`：\[function\]<br>
+`getDataEmit`：\[function\]通知父组件调取抽奖接口<br>
 `例子`：<br>
 ```
-    父组件：
-        luckInfoEmit(data) {};
-    子组件：
-        this.$emit('luckInfoEmit', {a:1})
+    只有在可抽奖时触发
 ```
-<br>
+***
+### $emit回传方法
+`successEmit`：\[function\]中奖的回调<br>
+`例子`：<br>
+```
+    所有流程都正常时通知父组件已完成动画，需要展示中奖信息
+```
+***
+### $emit回传方法
+`errorEmit`：\[function\]失败的回调<br>
+`例子`：<br>
+```
+    首页接口：
+        点击抽奖时友好提示
+    抽奖接口：
+        通过回传告诉父组件去查看抽奖接口的信息是否正常
+```
+***
