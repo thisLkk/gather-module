@@ -40,6 +40,10 @@ export default {
                     {
                         path: '/jiuGePrize',
                         name: '九宫格抽奖'
+                    },
+                    {
+                        path: 'progressBar',
+                        name: '进度条'
                     }
                 ]
             }
@@ -73,7 +77,7 @@ export default {
          */
         goBackHdl() {
             if (window.history && window.history.length === 1) {
-                this.$router.push('/')
+                this.$router.push('/');
             } else {
                 window.history.go(-1);
             }

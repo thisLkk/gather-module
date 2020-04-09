@@ -21,6 +21,11 @@ const routes = [
     path: "/jiuGePrize",
     name: "九宫格抽奖",
     component: loadView('JiuGePrize')
+  },
+  {
+    path: "/progressBar",
+    name: "进度条",
+    component: loadView('ProgressBar')
   }
 ];
 
