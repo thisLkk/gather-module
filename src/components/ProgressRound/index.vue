@@ -51,7 +51,6 @@ export default {
         // 监听所有的props变化
         $props:{
             handler: function() {
-                console.log(this.roundList)
                 let num = 0;
                 for (let index = 0; index < this.roundList.length; index++) {
                     // 每个进度大于100时赋值为100，表示完成
