@@ -30,7 +30,7 @@
                 class="btn-item"
                 type="primary"
                 @click="btnClickNum(2)"
-            >点击一个每个进度+10</mt-button>
+            >点击一次每个进度+10</mt-button>
         </div>
     </div>
 </template>

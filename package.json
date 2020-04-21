@@ -8,8 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "mint-ui": "^2.2.13",
+    "mockjs": "^1.1.0",
     "postcss-plugin-px2rem": "^0.8.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",

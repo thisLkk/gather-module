@@ -19,13 +19,18 @@ const routes = [
   },
   {
     path: "/jiuGePrize",
-    name: "九宫格抽奖",
+    name: "九宫格抽奖页面",
     component: loadView('JiuGePrize')
   },
   {
     path: "/progressBar",
-    name: "进度条",
+    name: "进度条页面",
     component: loadView('ProgressBar')
+  },
+  {
+    path: "/requestDemo",
+    name: "验证接口页面",
+    component: loadView('RequestDemo')
   }
 ];
 

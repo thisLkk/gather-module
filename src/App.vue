@@ -44,6 +44,9 @@ export default {
                     {
                         path: 'progressBar',
                         name: '进度条'
+                    },{
+                        path: 'RequestDemo',
+                        name: '验证接口'
                     }
                 ]
             }
