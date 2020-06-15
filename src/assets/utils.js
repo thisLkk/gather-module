@@ -92,3 +92,48 @@ export function timeFormat(stamp, type = 0) {
         return '';
     }
 };
+export const gloryFactory = (onPageLoad) => {
+    // 方便我们分开处理样式
+    DOCUMENT.body.classList.add(
+        (AGENT && AGENT.OS.ios) ? 'ios' : 'android'
+    );
+
+    let debug = getQueryString('door');
+    // Debug model
+    if (debug !== undefined && debug.indexOf('back') >= 0) {
+        Vue.config.devtools = Vue.config.productionTip = true;
+        if (debug.indexOf('sole') !== -1) {
+            getScript('https://w0.dxmstatic.com/cdn-co.baifubao.com/static/agentjs/dist/sole.js', function () { });
+        }
+        window.addEventListener('error', function (event) {
+            if (event.message.indexOf('Unexpected number') === -1) {
+                alert(event.message);
+            }
+        });
+    }
+    return onPageLoad();
+};
+// 禁止滚动
+let scrollTop = 0;
+let fixedCount = 0;
+export function fixedBody(toTop) {
+    fixedCount++;
+    if (scrollTop <= 0) {
+        scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        document.body.style.cssText += `position:fixed;top:-${toTop ? 0 : scrollTop}px;`;
+    }
+}
+
+// 去除滚动禁止
+export function looseBody() {
+    fixedCount--;
+    if(fixedCount > 0) {
+        return false;
+    }
+    const body = document.body;
+    body.style.position = '';
+    const top = body.style.top;
+    body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
+    body.style.top = '';
+    scrollTop = 0;
+}

@@ -62,6 +62,12 @@ module.exports = {
             }
         }
     },
+    pluginOptions: {
+        mock: {
+            entry: './mock/mock.js',
+            debug: true
+        }
+    },
     pages: {
         index: {
             // page 的入口

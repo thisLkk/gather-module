@@ -5,7 +5,6 @@ import store from "./store";
 import 'mint-ui/lib/style.css';
 import './assets/rem';
 import './assets/fx';
-require('./assets/mock');
 import { Header, Button, Navbar, TabItem, Swipe, SwipeItem, Field } from 'mint-ui';
 
 Vue.component(Header.name, Header);

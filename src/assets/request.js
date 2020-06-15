@@ -8,18 +8,15 @@ import axios from 'axios';
 axios.interceptors.request.use(function (config) {
     // 可以同意添加想要添加的信息
     // 例子：headers 添加一条信息
-    console.log(config);
     config.headers['demo'] = 'demo';
     return config;
 }, function (error) {
-    console.log(error);
     // 当出现请求错误是做一些处理
     return Promise.reject(error);
 });
 
 // 添加一个返回拦截器 （于transformResponse之后处理）
 axios.interceptors.response.use(function (response) {
-    console.log(response);
     // 可以设置满足一定条件才返回数据，如请求状态码或者接口返回的code
     return response.data;
 
@@ -80,7 +77,6 @@ export default function request(url, {
             }
         }
     }
-    console.log(configOption);
     return axios(configOption);
 
 };

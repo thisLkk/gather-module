@@ -36,6 +36,8 @@
 import { Toast } from "mint-ui";
 import gmConformity from "@/components/Conformity/index.vue";
 import gmFooter from "@/components/Footer/index.vue";
+import apiConfig from "@/apiconfig.js";
+import request from "@/assets/request.js";
 export default {
     name: "PageLu",
     data() {
@@ -83,8 +85,18 @@ export default {
         gmConformity,
         gmFooter
     },
-    created() {},
+    created() {
+        this.getIndex();
+    },
     methods: {
+        // 获取mock数据
+        getIndex() {
+            request(apiConfig.getPageLu, {
+                data: { a: 1 }
+            }).then(res => {
+                console.log(res);
+            })
+        },
         // 图片路径拼接
         imgSrcHdl(data) {
             return require("./images/" + data);
