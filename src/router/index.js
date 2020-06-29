@@ -31,7 +31,12 @@ const routes = [
     path: "/requestDemo",
     name: "验证接口页面",
     component: loadView('RequestDemo')
-  }
+  },
+  {
+    path: "/dialog",
+    name: "弹窗集合",
+    component: loadView('Dialog')
+  },
 ];
 
 const router = new VueRouter({

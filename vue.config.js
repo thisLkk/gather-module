@@ -55,7 +55,7 @@ module.exports = {
             postcss: {
                 plugins: [
                     require('postcss-plugin-px2rem')({
-                        rootValue: 75,      // 新版本的是这个值
+                        rootValue: 32,      // 新版本的是这个值
                         exclude: /node_modules/i // 解决mint-ui 样式变小问题
                     }),
                 ]

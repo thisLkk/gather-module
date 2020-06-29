@@ -47,7 +47,11 @@ export default {
                     },{
                         path: 'RequestDemo',
                         name: '验证接口'
-                    }
+                    },
+                    {
+                        path: 'Dialog',
+                        name: '弹窗集合'
+                    },
                 ]
             }
         };
@@ -97,7 +101,7 @@ export default {
 <style lang="scss">
 @import "~@/assets/css/app.scss";
 #app {
-    max-width: 750px;
+    max-width: 750px;/*no*/
     margin: 0 auto;
     width: 100%;
     height: 100%;

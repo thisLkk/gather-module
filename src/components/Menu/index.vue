@@ -1,6 +1,6 @@
 <template>
     <div class="gm-menu" :class="animationCls" @touchmove="preventEvent($event)">
-        <a class="gm-m-close" href="javascipt:void(0)" @click="closeHdl()">关闭</a>
+        <a class="gm-m-close" href="javascript:void(0)" @click="closeHdl()">关闭</a>
         <ul>
             <li
                 v-for="(item, index) in list"

@@ -5,8 +5,19 @@
  * @param {Function} callback 回调函数
  * @inner
  */
+import Vue from 'vue';
+const WINDOW = window;
+const DOCUMENT = WINDOW.document;
 const loading = {};
 const loaded = {};
+/**
+ *判断当前环境是否是微信
+*
+* @inner
+*/
+export function isWx() {
+    return /MicroMessenger/i.test(navigator.userAgent);
+}
 export function getScript(requestURL, callback) {
     var el;
     var url = requestURL;
@@ -45,6 +56,8 @@ export function getScript(requestURL, callback) {
         document.getElementsByTagName('head')[0].appendChild(el);
     }
 };
+// 获取变量类型
+export const getType = param => Object.prototype.toString.call(param).match(/\[object\s(\w+)\]/)[1];
 /**
  * 获取url参数
  *
@@ -92,11 +105,12 @@ export function timeFormat(stamp, type = 0) {
         return '';
     }
 };
+// 增加手机端调试
 export const gloryFactory = (onPageLoad) => {
     // 方便我们分开处理样式
-    DOCUMENT.body.classList.add(
-        (AGENT && AGENT.OS.ios) ? 'ios' : 'android'
-    );
+    // DOCUMENT.body.classList.add(
+    //     // (AGENT && AGENT.OS.ios) ? 'ios' : 'android'
+    // );
 
     let debug = getQueryString('door');
     // Debug model
@@ -113,6 +127,40 @@ export const gloryFactory = (onPageLoad) => {
     }
     return onPageLoad();
 };
+/**
+ * 数字转换为金额,默认传入的数字为分
+ * @param {Number} num 数字
+ * @param {Number} type 类型 0默认：逗号相隔 例子          num ： 10001000   输出：10,001,000.00 
+ * @param {Number} type 类型 1：过万展示万标示且没有逗号 例子 1、num ： 9999   输出： 9999.00  2、num ： 99999   输出： 9.99万
+ *
+ */
+export function numToAmount (num, type = 0) {
+    // 不存在返回 0.00
+    if (!num) return '0.00';
+    // 是否过万(单位是分)
+    var isWan = +num >= 1000000 ? true : false;
+    // 判断是否有小数
+    // 过万添加万字标示
+    switch (+type) {
+        case 1:
+            num = isWan ? (fen2yuan(num/10000, 2)) + '万' : fen2yuan(num, 2);
+            break;
+            
+        default:
+            num = fen2yuan(num, 2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        break;
+    }
+    return num; 
+}
+/**
+ * 分转化为元
+ * val 数字，需要转化的金额
+ * num 需要保留的小数位数
+ */
+export function fen2yuan(val, num = 0) {
+    val = val * 10;
+    return (parseInt(val) / 1000).toFixed(num);
+}
 // 禁止滚动
 let scrollTop = 0;
 let fixedCount = 0;

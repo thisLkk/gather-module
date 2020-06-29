@@ -1,5 +1,5 @@
 <template>
-    <div class='.luckpage'>
+    <div class='luckpage'>
         <jiugonggeLottery
             :lotteryList='opt.data'
             :buttonClickable='buttonClickable'
@@ -9,10 +9,11 @@
             :onNonClickable ='onNonClickable'
             :onFinished ='onFinished'
         >
-        </jiugonggeLottery>
-            <div class="ceshi1" :class="{'active': !buttonClickable}"></div>
+            <div class="ceshi1" :class="{'active': !buttonClickable}">
                 <div class="btn"></div> 点击抽奖
                 <div class="qibao"></div> 九宫格
+            </div>
+        </jiugonggeLottery>
     </div>
 </template>
 
