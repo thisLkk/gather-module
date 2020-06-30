@@ -1,15 +1,13 @@
-<template>
+<template lang="pug">
     <div id="app" :class="cPath">
+        .asd 测试jade
         <mt-header :class="'gm-header'" :title="cTitle">
             <mt-button icon="back" slot="left" v-show="cBackShow" @click="goBackHdl()"></mt-button>
             <mt-button icon="more" slot="right" @click="showMenuHdl()">
             </mt-button>
         </mt-header>
-        <gm-menu
-            v-if="menuOpt.show"
-            :list="menuOpt.list"
-            :closeMenu="menuOpt.closeMenu"
-        ></gm-menu>
+        <gm-menu v-if="menuOpt.show" :list="menuOpt.list" :closeMenu="menuOpt.closeMenu" >
+        </gm-menu>
         <transition name="fade">
             <router-view />
         </transition>
