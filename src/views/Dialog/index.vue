@@ -1,14 +1,11 @@
-<template>
-    <div class="dialog">
-        <mt-button
-            class="btn-item"
-            type="primary"
-            @click="btnClickHdl(1)"
-        >打开弹窗</mt-button>
-    </div>
+<template lang="pug">
+    .dialog
+        mt-button(
+            class="btn-item",
+            type="primary",
+            @click="btnClickHdl(1)") 普通弹窗
 </template>
 <script>
-import DialogBase from "@/components/DialogBase/index.vue";
 export default {
     name: "Dialog",
     data() {
@@ -19,19 +16,16 @@ export default {
     created() {
     },
     components: {
-        DialogBase
     },
     methods: {
         btnClickHdl() {
-        //    this.show = true;
-            this.$Dialog.use('error', {
-                a: 2
-            }).then(res => {
-                console.log(111111)
-            });
+            console.log(this.$Dialog)
+            this.$Dialog.show();
+            // this.$Dialog.use('error',{title: "123"}).then(res => {
+            //     console.log(res)
+            // });
         },
         close() {
-            // this.show = false;
         }
     }
 };

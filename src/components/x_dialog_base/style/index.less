@@ -1,0 +1,229 @@
+@import "custom.less";
+@css-prefix : dialig;
+
+.content-close(@top: 0, @icon-font-size: 22px) {
+    font-size: @font-size-base;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .close {
+        display: block;
+        height: 20px;
+        width: 20px;
+        background-color: red;
+        .close-base(@top, @icon-font-size);
+    }
+}
+
+.@{modal-prefix-cls} {
+    position: absolute;
+    width: 610px;
+    outline: none;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: @font-size-base;
+
+    &-hidden {
+        display: none !important;
+    }
+
+    &-wrap {
+        position: fixed;
+        overflow: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: @zindex-modal;
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+    }
+
+    &-wrap * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    &-mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(55, 55, 55, 0.6);
+        height: 100%;
+        z-index: @zindex-modal;
+
+        &-hidden {
+            display: none;
+        }
+    }
+
+    &-content {
+        position: relative;
+        background-color: #fff;
+        border: 0;
+        border-radius: @border-radius-base;
+        background-clip: padding-box;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+
+        &-no-mask {
+            pointer-events: auto;
+        }
+
+        &-drag {
+            position: absolute;
+
+            .@{modal-prefix-cls}-header {
+                cursor: move;
+            }
+        }
+
+        &-dragging {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+    }
+
+    &-header {
+        padding: 14px 16px;
+        line-height: 1;
+
+        p,
+        &-inner {
+            display: inline-block;
+            width: 100%;
+            font-size: 34px;
+            color: @title-color;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        p i,
+        p span {
+            vertical-align: middle;
+        }
+    }
+
+    &-close {
+        z-index: 1;
+        .content-close(1px, 31px);
+    }
+
+    &-body {
+        padding: 24px;
+        font-size: 24px;
+        line-height: 1.5;
+    }
+
+    &-footer {
+        padding: 12px 18px 12px 18px;
+        text-align: right;
+
+        button+button {
+            margin-left: 8px;
+            margin-bottom: 0;
+        }
+    }
+
+    &-fullscreen {
+        width: 100% !important;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+
+        @modal-header-height: 51px;
+        @modal-footer-height: 61px;
+
+        .@{modal-prefix-cls}-content {
+            width: 100%;
+            border-radius: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
+        .@{modal-prefix-cls}-body {
+            width: 100%;
+            overflow: auto;
+            position: absolute;
+            top: @modal-header-height;
+            bottom: @modal-footer-height;
+        }
+
+        &-no-header .@{modal-prefix-cls}-body {
+            top: 0;
+        }
+
+        &-no-footer .@{modal-prefix-cls}-body {
+            bottom: 0;
+        }
+
+        .@{modal-prefix-cls}-footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    }
+
+    &-no-mask {
+        pointer-events: none;
+    }
+}
+
+.close-base(@top: 0, @icon-font-size: 22px) {
+    font-size: @icon-font-size;
+    color: @legend-color;
+    position: relative;
+    top: @top;
+
+    &:hover {
+        color: #444;
+    }
+}
+
+.@{confirm-prefix-cls} {
+    padding: 0 4px;
+
+    &-head {
+        padding: 0 12px 0 0;
+
+        &-title {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 12px;
+            font-size: @font-size-large;
+            color: @title-color;
+            font-weight: 700;
+        }
+    }
+
+    &-body {
+        padding-left: 42px;
+        font-size: @font-size-base;
+        color: @text-color;
+        position: relative;
+
+        &-render {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    &-footer {
+        margin-top: 20px;
+        text-align: right;
+
+        button+button {
+            margin-left: 8px;
+            margin-bottom: 0;
+        }
+    }
+}

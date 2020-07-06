@@ -1,15 +1,15 @@
-<template>
-   <dialog-base class="error-dialog">
-       <div>asd</div>
-   </dialog-base>
+<template lang="pug">
+    dialog-base.error-dialog
+        template(slot="footer")
+            .btn.big.ok(@click='onOk') 确定
 </template>
 <script>
 import DialogBase from "@/components/DialogBase/index.vue";
 export default {
     name: "error",
     props: {
-        a: {
-            type: Number
+        title: {
+            type: String
         }
     },
     data() {
@@ -18,19 +18,17 @@ export default {
         };
     },
     created() {
-        console.log(this.$props)
     },
     components: {
         DialogBase
     },
     methods: {
-        btnColose() {
-            this.close();
+        onOk() {
+            this.$emit("confirm")
         }
     }
 };
 </script>
 <style lang="scss" scoped>
 @import "~@/assets/css/app.scss";
-
 </style>

@@ -1,12 +1,16 @@
 <template>
     <div class="dialog-base">
         <div class="dialog-main">
-            <div class="dialog-header"></div>
-            <div class="dialog-body">
-                <slot></slot>
+            <div class="dialog-header">
+                <slot name="header"></slot>
             </div>
-            <div class="dialog-footer"></div>
-            <div class="dialog-close" @click="btnColose">
+            <div class="dialog-body">
+                <slot name="body"></slot>
+            </div>
+            <div class="dialog-footer">
+                <slot name="footer"></slot>
+            </div>
+            <div class="dialog-close" @click="onClose">
                 关闭
             </div>
         </div>
@@ -19,8 +23,8 @@ export default {
         show: {
             type: Boolean
         },
-        close: {
-            type: Function
+        title: {
+            type: String
         }
     },
     data() {
@@ -31,8 +35,8 @@ export default {
     created() {
     },
     methods: {
-        btnColose() {
-            this.close();
+        onClose() {
+            console.log(this.data)
         }
     }
 };
@@ -53,7 +57,7 @@ export default {
     .dialog-main {
         width: 630px;
         height: 500px;
-        background: #fff;
+        background: $bgColorWhite;
         border-radius: 16px;
     }
 }

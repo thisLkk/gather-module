@@ -1,6 +1,5 @@
-<template lang="pug">
+<template>
     <div id="app" :class="cPath">
-        .asd 测试jade
         <mt-header :class="'gm-header'" :title="cTitle">
             <mt-button icon="back" slot="left" v-show="cBackShow" @click="goBackHdl()"></mt-button>
             <mt-button icon="more" slot="right" @click="showMenuHdl()">
