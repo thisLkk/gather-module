@@ -10,6 +10,7 @@ import lazy from './assets/lazy/index';
 import { gloryFactory } from './assets/utils';
 import Dialog from './components/DialogBase/index.js';
 import { Header, Button, Navbar, TabItem, Swipe, SwipeItem, Field } from 'mint-ui';
+require('./api/mock.js');
 lazy.install(Vue, {lazyComponent: true, lazyImage: true});
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);

@@ -25,8 +25,8 @@ export default (lazy) => {
       }
     },
     mounted () {
-      console.log('mounted')
       this.el = this.$el
+      // console.log(this.$el)
       lazy.addLazyBox(this)
       lazy.lazyLoadHandler()
     },
@@ -38,7 +38,7 @@ export default (lazy) => {
         this.rect = this.$el.getBoundingClientRect()
       },
       checkInView () {
-        console.log(this.$el.getBoundingClientRect())
+        // console.log(this.$el.getBoundingClientRect())
         this.getRect()
         return inBrowser &&
                     (this.rect.top < window.innerHeight * lazy.options.preLoad && this.rect.bottom > 0) &&

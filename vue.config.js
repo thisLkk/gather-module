@@ -3,6 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 // 压缩插件（Content-Encoding编码的压缩版的资源）
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+// proxy 方式的mock请求
+let apiRewrite = require('./src/apiRewrite.js');
 // 检测环境
 const isProd = () => {
     return process.env.NODE_ENV === 'production';
@@ -66,6 +68,16 @@ module.exports = {
         mock: {
             entry: './mock/mock.js',
             debug: true
+        }
+    },
+    devServer: {
+        proxy: {
+            '/proxy': {
+                // 此处的本地端口可以通过portfinder模块做动态的
+                target: 'http://localhost:8080',
+                changeOrigin: true,
+                pathRewrite: apiRewrite
+            }
         }
     },
     pages: {
