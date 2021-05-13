@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import $http from "@/assets/request.js";
+import apiConfig from "@/apiconfig.js";
 import { Toast } from "mint-ui";
 import gmConformity from "@/components/Conformity/index.vue";
 import gmFooter from "@/components/Footer/index.vue";
@@ -84,8 +86,16 @@ export default {
         gmFooter
     },
     created() {
+        this.axiosMode1()
     },
     methods: {
+        axiosMode1() {
+            $http(apiConfig.apiDequestDemo + 'dbtest.php', {
+                data: { api: 1 }
+            }).then(res => {
+                console.log(res);
+            });
+        },
         // 图片路径拼接
         imgSrcHdl(data) {
             return require("./images/" + data);
