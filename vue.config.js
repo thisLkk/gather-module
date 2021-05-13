@@ -43,6 +43,9 @@ const pluginsModule = () => {
 
 module.exports = {
     assetsDir: 'static',
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/gather-module/'
+    : '/',
     configureWebpack: () => ({
         resolve: {
             alias: {

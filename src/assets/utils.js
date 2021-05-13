@@ -154,12 +154,28 @@ export function numToAmount (num, type = 0) {
 }
 /**
  * 分转化为元
- * val 数字，需要转化的金额
- * num 需要保留的小数位数
+ * @param {String|Number} val 数字，需要转化的金额
+ * @param {Number} num 需要保留的小数位数
+ * @param {Boolean} isDelZero 当小数为00时是否保留，默认不保留
  */
-export function fen2yuan(val, num = 0) {
+export function fen2yuan(val, num = 0, isDelZero = false) {
+    if(!val) return 0
     val = val * 10;
-    return (parseInt(val) / 1000).toFixed(num);
+    let str = (parseInt(val) / 1000).toFixed(num);
+    let part = str.split('.');
+    // 保留小数, 100.00 || 100.10
+    if (isDelZero) {
+        return str
+    }
+    // 不保留00小数  10000 输出 100  10010 输出 100.1 10001 输出 100.01
+    if (!isDelZero && +part[1] > 0) {
+        let popNum = part[1].slice(part[1].length - 1)
+        if (+part[1] >= 10) {
+            return popNum > 0 && +part[1] >= 10 ? str : str.slice(0, str.length - 1)
+        }
+        return str
+    }
+    return part[0];
 }
 // 禁止滚动
 let scrollTop = 0;
